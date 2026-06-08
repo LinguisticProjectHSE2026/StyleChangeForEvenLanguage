@@ -15,14 +15,13 @@ def run() -> None:
         if input_file.suffix.lower() not in AUDIO_EXTENSIONS:
             continue
 
-        tmp_file = TMP_DIR / input_file.name
         output_file = OUTPUT_DIR / input_file.name
 
-        print(f"Denoising:      {input_file} -> {tmp_file}")
-        denoise(input_file, tmp_file)
+        print(f"Denoising:      {input_file} -> {TMP_DIR}/{{speech,singing}}/")
+        denoise(input_file, TMP_DIR)
 
-        print(f"Style changing: {tmp_file} -> {output_file}")
-        change_style(tmp_file, output_file)
+        print(f"Style changing: {TMP_DIR}/ -> {output_file}")
+        change_style(TMP_DIR, output_file)
 
         print(f"Done:           {output_file}\n")
 
